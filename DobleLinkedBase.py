@@ -34,7 +34,7 @@ class _DoubleLinkedBase:
 		"""Add element e between two existing nodes and return new node"""
 		newest = self._Node(e, predecessor, successor)
 		# ===== Start writing your code here =====
-		if predecessor._next==successor:
+		if predecessor._next==successor:      #checking if the predecessor and successor are adjacent
 			predecessor._next=newest
 			newest._prev=predecessor
 			newest._next=successor
@@ -49,7 +49,9 @@ class _DoubleLinkedBase:
 		"""Delete nonsentinel node from the list and return its elements"""
 		# ===== Start writing your code here =====
 		value=node._element
-		if node._prev is not None :
+		if node._prev is None or node._next is None:  #checking is the node is a sentinel node
+			print("cannot delete sentinel nodes")
+		else:
 			predecessor=node._prev
 			successor=node._next
 			predecessor._next=successor
@@ -58,10 +60,10 @@ class _DoubleLinkedBase:
 		return value
 		# ===== End writing your code here =====
 #testing
-# lis1=_DoubleLinkedBase()
-# a=lis1._insert_between(12,lis1._header,lis1._trailer)
-# print(lis1.__len__(),a)
-# p=lis1._delete_node(lis1._header._next)
-# print(lis1.__len__(),p)
+lis1=_DoubleLinkedBase()
+a=lis1._insert_between(12,lis1._header,lis1._trailer)
+print(lis1.__len__(),a)
+p=lis1._delete_node(lis1._header._next)
+print(lis1.__len__(),p)
 
 

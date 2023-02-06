@@ -1,0 +1,5 @@
+lis1=_DoubleLinkedBase()
+a=lis1._insert_between(12,lis1._header,lis1._trailer)
+print(lis1.__len__(),a)
+p=lis1._delete_node(lis1._header._next)
+print(lis1.__len__(),p)
