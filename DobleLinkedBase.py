@@ -34,29 +34,34 @@ class _DoubleLinkedBase:
 		"""Add element e between two existing nodes and return new node"""
 		newest = self._Node(e, predecessor, successor)
 		# ===== Start writing your code here =====
-		predecessor._next=newest
-		newest._prev=predecessor
-		newest._next=successor
-		successor._prev=newest
-		self._size+=1
-		return newest
+		if predecessor._next==successor:
+			predecessor._next=newest
+			newest._prev=predecessor
+			newest._next=successor
+			successor._prev=newest
+			self._size+=1
+			return newest
+		else :
+			print("the given nodes are not adjacent")
 		# ===== End writing your code here =====
 
 	def _delete_node(self, node):
 		"""Delete nonsentinel node from the list and return its elements"""
 		# ===== Start writing your code here =====
-		predecessor=node._prev
-		successor=node._next
-		predecessor._next=successor
-		successor._prev=predecessor
-		self._size-=1
-		return node._element
+		value=node._element
+		if node._prev is not None :
+			predecessor=node._prev
+			successor=node._next
+			predecessor._next=successor
+			successor._prev=predecessor
+			self._size-=1
+		return value
 		# ===== End writing your code here =====
-
-lis1=_DoubleLinkedBase()
-lis1._insert_between(12,lis1._header,lis1._trailer)
-print(lis1.__len__())
-lis1._delete_node(lis1._header._next)
-print(lis1.__len__())
+#testing
+# lis1=_DoubleLinkedBase()
+# a=lis1._insert_between(12,lis1._header,lis1._trailer)
+# print(lis1.__len__(),a)
+# p=lis1._delete_node(lis1._header._next)
+# print(lis1.__len__(),p)
 
 
